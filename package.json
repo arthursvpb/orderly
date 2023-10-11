@@ -6,8 +6,10 @@
   "scripts": {
     "build": "nest build",
     "start": "nest start",
+    "docker:start": "npm ci && docker-compose -p orderly up -d",
+    "docker:clean": "rm -rf ./data && rm -rf ./dist && rm -rf ./node_modules",
+    "docker:clean:start": "npm run docker:clean && npm run docker:start",
     "start:dev": "nest start --watch",
-    "start:docker": "docker-compose -p orderly up -d",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"

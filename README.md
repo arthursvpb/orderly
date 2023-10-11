@@ -3,5 +3,5 @@
 ### Start application
 
 ```sh
-npm run start:docker
+npm run docker:start
 ```

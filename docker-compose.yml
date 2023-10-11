@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   orderly-db:
-    image: postgres
+    image: postgres:16.0
     container_name: orderly-postgres
     environment:
       POSTGRES_USER: dev
@@ -15,9 +15,12 @@ services:
       - ./data/pg:/data/postgres
   orderly-server:
     build: .
+    image: orderly-api:1.0.0
+    container_name: orderly-api
     command: npm run start:dev
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - 8080:8080
       - 9229:9229
