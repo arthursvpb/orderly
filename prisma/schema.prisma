@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  RECEIVED
+  PREPARING
+  READY
+  FINALIZED
+}
+
+enum StockMovement {
+  ADD
+  REMOVE
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  DENIED
+}
+
+model Client {
+  id            String         @id @default(uuid())
+  cpf           String?        @unique
+  orders        Order[]
+  notifications Notification[]
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  order         Order         @relation(fields: [orderId], references: [id])
+  orderId       String        @unique
+  qrCode        String        @unique
+  paymentStatus PaymentStatus
+}
+
+model Order {
+  id       String      @id @default(uuid())
+  clientId String      @map("client_id")
+  client   Client      @relation(fields: [clientId], references: [id])
+  status   OrderStatus
+  products Product[]
+  payment  Payment?
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  name      String
+  price     Float
+  stock     Int
+  orders    Order[]
+  service   Service? @relation(fields: [serviceId], references: [id])
+  serviceId String?
+  stocks    Stock[]
+}
+
+model Service {
+  id       String    @id @default(uuid())
+  name     String
+  products Product[]
+}
+
+model Notification {
+  id       String   @id @default(uuid())
+  content  String
+  sentAt   DateTime @default(now())
+  clientId String   @map("client_id")
+  client   Client   @relation(fields: [clientId], references: [id])
+}
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
+
+model Stock {
+  id        String        @id @default(uuid())
+  product   Product       @relation(fields: [productId], references: [id])
+  productId String
+  count     Int
+  movement  StockMovement
+}
