@@ -19,8 +19,7 @@ services:
     container_name: orderly-api
     command: npm run start:dev
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/usr/src/app:rw
     ports:
       - 8080:8080
       - 9229:9229

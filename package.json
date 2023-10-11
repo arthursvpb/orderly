@@ -6,9 +6,7 @@
   "scripts": {
     "build": "nest build",
     "start": "nest start",
-    "docker:start": "npm ci && docker-compose -p orderly up -d",
-    "docker:clean": "rm -rf ./data && rm -rf ./dist && rm -rf ./node_modules",
-    "docker:clean:start": "npm run docker:clean && npm run docker:start",
+    "docker:start": "docker-compose -p orderly up -d && npm install",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
