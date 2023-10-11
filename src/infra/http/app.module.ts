@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { Module, Controller, Get } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
@@ -13,5 +14,6 @@ export class AppController {
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
+  providers: [PrismaService],
 })
 export class AppModule {}
