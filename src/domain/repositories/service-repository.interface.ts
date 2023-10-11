@@ -1,3 +1,5 @@
+import { Service } from '@/domain/entities/Service';
+
 export interface IServiceRepository {
   save(service: Service): Promise<void>;
   findById(serviceId: string): Promise<Service | null>;

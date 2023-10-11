@@ -1,3 +1,5 @@
+import { Notification } from '@/domain/entities/Notification';
+
 export interface INotificationRepository {
   save(notification: Notification): Promise<void>;
   findByUserId(userId: string): Promise<Notification[]>;
