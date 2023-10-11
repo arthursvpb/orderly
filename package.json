@@ -6,7 +6,7 @@
   "scripts": {
     "build": "nest build",
     "start": "nest start",
-    "docker:start": "docker-compose -p orderly up -d && npm install",
+    "docker:start": "npm install && docker-compose -p orderly up -d",
     "db:migrate:dev": "prisma migrate dev --schema ./src/infra/database/prisma/schema.prisma",
     "start:dev": "nest start --debug 0.0.0.0:9229 --watch",
     "start:prod": "node dist/main",
@@ -15,6 +15,9 @@
   "engines": {
     "node": ">=18.16.0",
     "npm": ">=9.5.1"
+  },
+  "prisma": {
+    "schema": "./src/infra/database/prisma/schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
