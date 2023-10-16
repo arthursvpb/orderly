@@ -1,9 +1,24 @@
+import { Client } from '@/domain/entities/Client';
 import { IClientRepository } from '@/domain/repositories/client-repository.interface';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 
 @Injectable()
 export class ClientApplicationService {
-  constructor(private readonly clientRepository: IClientRepository) {}
+  constructor(
+    @Inject('IClientRepository')
+    private readonly clientRepository: IClientRepository,
+  ) {}
 
-  // Add methods to handle Client-specific operations
+  async createClient(clientData: Client): Promise<Client> {
+    const client = new Client(clientData);
+    return this.clientRepository.save(client);
+  }
+
+  async getClientByCpf(cpf: string): Promise<Client | null> {
+    return this.clientRepository.findByCpf(cpf);
+  }
+
+  async getAllClients(): Promise<Client[]> {
+    return this.clientRepository.findAll();
+  }
 }

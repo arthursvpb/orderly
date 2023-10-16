@@ -1,6 +1,9 @@
 export class Client {
-  constructor(
-    public id: string,
-    public cpf?: string,
-  ) {}
+  id?: string;
+  cpf?: string;
+
+  constructor(data: Client) {
+    this.id = data.id;
+    this.cpf = data.cpf;
+  }
 }

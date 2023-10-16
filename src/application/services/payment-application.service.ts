@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class PaymentApplicationService {
   constructor(private readonly paymentRepository: IPaymentRepository) {}
 
-  // Add methods to handle Payment-specific operations
+  // Methods to handle Payment-specific operations
 }

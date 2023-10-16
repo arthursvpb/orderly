@@ -7,5 +7,5 @@ export class NotificationApplicationService {
     private readonly notificationRepository: INotificationRepository,
   ) {}
 
-  // Add methods to handle Notification-specific operations
+  // Methods to handle Notification-specific operations
 }

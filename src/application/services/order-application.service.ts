@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class OrderApplicationService {
   constructor(private readonly orderRepository: IOrderRepository) {}
 
-  // Add methods to handle Order-specific operations
+  // Methods to handle Order-specific operations
 }

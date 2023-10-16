@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class AdminApplicationService {
   constructor(private readonly adminRepository: IAdminRepository) {}
 
-  // Add methods to handle Admin-specific operations
+  // Methods to handle Admin-specific operations
 }

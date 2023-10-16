@@ -9,13 +9,26 @@ export class PrismaClientRepository implements IClientRepository {
     this.prisma = new PrismaClient();
   }
 
-  save(client: Client): Promise<Client> {
-    throw new Error('Method not implemented.');
+  async save(client: Client): Promise<Client> {
+    const savedClient = await this.prisma.client.upsert({
+      where: { id: client.id },
+      create: client,
+      update: client,
+    });
+
+    return new Client(savedClient);
   }
-  findByCpf(cpf: string): Promise<Client | null> {
-    throw new Error('Method not implemented.');
+
+  async findByCpf(cpf: string): Promise<Client | null> {
+    const foundClient = await this.prisma.client.findUnique({ where: { cpf } });
+
+    if (!foundClient) return null;
+
+    return new Client(foundClient);
   }
-  findAll(): Promise<Client[]> {
-    throw new Error('Method not implemented.');
+
+  async findAll(): Promise<Client[]> {
+    const clients = await this.prisma.client.findMany();
+    return clients.map(client => new Client(client));
   }
 }

@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class StockApplicationService {
   constructor(private readonly stockRepository: IStockRepository) {}
 
-  // Add methods to handle Stock-specific operations
+  // Methods to handle Stock-specific operations
 }

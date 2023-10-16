@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class ProductApplicationService {
   constructor(private readonly productRepository: IProductRepository) {}
 
-  // Add methods to handle Product-specific operations
+  // Methods to handle Product-specific operations
 }

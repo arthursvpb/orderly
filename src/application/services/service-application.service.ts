@@ -5,5 +5,5 @@ import { Injectable } from '@nestjs/common';
 export class ServiceApplicationService {
   constructor(private readonly serviceRepository: IServiceRepository) {}
 
-  // Add methods to handle Service-specific operations
+  // Methods to handle Service-specific operations
 }
