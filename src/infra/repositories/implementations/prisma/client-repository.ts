@@ -10,11 +10,7 @@ export class PrismaClientRepository implements IClientRepository {
   }
 
   async save(client: Client): Promise<Client> {
-    const savedClient = await this.prisma.client.upsert({
-      where: { id: client.id },
-      create: client,
-      update: client,
-    });
+    const savedClient = await this.prisma.client.create({ data: client });
 
     return new Client(savedClient);
   }

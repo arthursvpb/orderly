@@ -1,8 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
-
-
 export const initSwagger = (app: INestApplication) => {
   const document = SwaggerModule.createDocument(
     app,
