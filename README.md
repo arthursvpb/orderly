@@ -27,7 +27,7 @@ This project was built using the following technologies and architectural concep
 - [DDD (Domain-driven Design)](https://domainlanguage.com/)
 - [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
 
-## ▶️ Running
+## 🟢 Running
 
 Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installed.
 
