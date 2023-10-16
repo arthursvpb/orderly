@@ -1,26 +1,69 @@
-# Orderly
+<h1 align="center">Orderly API</h1>
 
-## Start application
+<p align="center">
+  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-technologies">Tecnologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-running">Running</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-license">License</a>
+</p>
+
+<p align="center">
+  <a href="#-license">
+    <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=ed2945&labelColor=000000">
+  </a>
+</p>
+
+## 💻 Project
+
+Orderly API is a cutting-edge web API designed to streamline operations for restaurant and food businesses (RMS). It draws from the principles of **Domain-Driven Design (DDD)** and **Hexagonal Architecture** to ensure scalability, maintainability, and a robust integration capability.
+
+## ✨ Technologies
+
+This project was built using the following technologies and architectural concepts:
+
+- [NestJS](https://nestjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
+- [DDD (Domain-driven Design)](https://domainlanguage.com/)
+- [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
+
+## ▶️ Running
+
+Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installed.
+
+1. Clone this project:
+
+```sh
+git clone https://github.com/arthursvpb/orderly.git
+```
+
+2. Configure your environment by creating a `.env` file based on the `.env.example`.
+
+3. Start the application:
 
 ```sh
 npm run docker:start
 ```
 
-_This command will start the application and [Swagger](https://swagger.io/) documentation will be available at `http://localhost:8080/api`_
+This will launch the application. Once it's up, the [Swagger](https://swagger.io/) documentation can be accessed at `http://localhost:8080/api`.
 
-## Run dev migrations
+4. To set up the database schema, run the migrations:
 
 ```sh
 npm run db:migrate:dev
 ```
 
-## ER Diagram
+## Database ER Diagram
 
 <img align="center" src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
 
-## Domain-Driven Design and Hexagonal Architecture
+## DDD (Domain-Driven Design)
 
-### 1.1. Entities
+Domain-Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. Here's a breakdown of how DDD principles have been applied in Orderly:
+
+### Domain Storytelling
+
+#### 1.1. Entities
 
 1. **Client**: Identified optionally by a Brazilian CPF.
 2. **Payment**: Represents a transaction that will be used with OHS. Has an associated status (perhaps initiated, processed, confirmed).
@@ -31,13 +74,13 @@ npm run db:migrate:dev
 7. **Stock**: Represents the available inventory of products.
 8. **Product**: Items like Hamburger, Fries, Soda, etc.
 
-### 1.2. Value Objects
+#### 1.2. Value Objects
 
 1. **ProductDetails**: For `Product`, attributes like `Name`, `Description`, `NutritionalInfo`, etc., can be value objects. They don't have an identity on their own, but they describe a Product.
 2. **PaymentDetails**: For `Payment`, attributes like `Amount`, `Currency`, `QRCode` can be value objects.
 3. **NotificationContent**: For `Notification`, details like `Message`, `Timestamp`, and `Type` could be value objects.
 
-### 1.3. Aggregates
+#### 1.3. Aggregates
 
 1. **Check-in**: Rooted at `Client`, with `Order` being part of the aggregate.
 2. **Check-out**: Rooted at `Order`, which affects both `Deliver` and `Production`.
@@ -45,7 +88,7 @@ npm run db:migrate:dev
 4. **Billing**: Rooted at `Payment`, using ACL to conform with OHS.
 5. **Admin**: Rooted at `Admin`, influencing the `Stock`.
 
-### 1.4. Domain Events
+#### 1.4. Domain Events
 
 1. **ClientRegistered**: Triggered when a client registers.
 2. **ProductsSelected**: Triggered when products are selected.
@@ -54,4 +97,15 @@ npm run db:migrate:dev
 5. **PaymentApproved**: Triggered upon payment confirmation.
 6. **StatusUpdatedToReceived**: Triggered when order status changes.
 7. **ClientNotified**: Triggered to notify the client.
-8. ... (Similar events for other status updates and notifications.)
+
+### Event Storming
+
+<img align="center" src="./.github/event-storming.png" alt="Event Storming" />
+
+### Context Map
+
+<img align="center" src="./.github/context-map.png" alt="Context Map" />
+
+## 📝 License
+
+This project is licensed under the MIT License. For more information, please refer to the [LICENSE](LICENSE.md) file.
