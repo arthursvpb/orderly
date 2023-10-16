@@ -18,7 +18,7 @@ export class ClientController {
   }
 
   @Get(':cpf')
-  findOne(@Param('cpf') id: string) {
-    return this.clientService.getClientByCpf(id);
+  findOne(@Param('cpf') cpf: string) {
+    return this.clientService.getClientByCpf(cpf);
   }
 }

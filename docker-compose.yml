@@ -18,6 +18,8 @@ services:
     build: .
     image: orderly-api:1.0.0
     container_name: orderly-api
+    environment:
+      DATABASE_URL: postgresql://dev:docker@host.docker.internal:5432/orderly?schema=public
     command: npm run start:dev
     volumes:
       - .:/usr/src/app:rw

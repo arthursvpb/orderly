@@ -6,6 +6,14 @@
 npm run docker:start
 ```
 
+_This command will start the application and [Swagger](https://swagger.io/) documentation will be available at `http://localhost:8080/api`_
+
+## Run dev migrations
+
+```sh
+npm run db:migrate:dev
+```
+
 ## ER Diagram
 
 <img align="center" src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
