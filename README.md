@@ -6,14 +6,6 @@
 npm run docker:start
 ```
 
-## Run migrations
-
-_Note: copy `.env.example` content to `.env`_
-
-```sh
-npm run db:migrate:dev
-```
-
 ## ER Diagram
 
 <img align="center" src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
