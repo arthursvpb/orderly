@@ -10,6 +10,8 @@ services:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: orderly
       PGDATA: /data/postgres
+    networks:
+      - orderly-network
     ports:
       - 5432:5432
     volumes:
@@ -19,12 +21,18 @@ services:
     image: orderly-api:1.0.0
     container_name: orderly-api
     environment:
-      DATABASE_URL: postgresql://dev:docker@host.docker.internal:5432/orderly?schema=public
+      DATABASE_URL: postgresql://dev:docker@orderly-db:5432/orderly?schema=public
     command: npm run start:dev
     volumes:
       - .:/usr/src/app:rw
+    networks:
+      - orderly-network
     ports:
       - 8080:8080
       - 9229:9229
     depends_on:
       - orderly-db
+      
+networks:
+  orderly-network:
+    driver: bridge
